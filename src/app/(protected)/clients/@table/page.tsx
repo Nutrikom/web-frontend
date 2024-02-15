@@ -1,10 +1,12 @@
-import ClientsTable from "@/lib/components/tables/ClientsTable";
+"use server";
 
-export default async function ClientsPage({
+import ClientTable from "@/lib/components/tables/ClientsTable";
+
+export default async function ClientsTableComponent({
 	searchParams,
 }: {
 	searchParams?: {
-		name?: string;
+		search?: string;
 		page?: string;
 	};
 }) {
@@ -43,22 +45,9 @@ export default async function ClientsPage({
 		],
 	};
 
-	const columns = [
-		{ name: "Profil", uid: "fullName" },
-		{ name: "E-Posta", uid: "email" },
-		{ name: "Telefon Numarası", uid: "phoneNumber" },
-		{ name: "Detaylar", uid: "more" },
-	];
-
-	const baseUrl = process.env.BASE_URL;
-
 	return (
 		<div className='p-4'>
-			<ClientsTable
-				columns={columns}
-				pageData={data}
-				baseUrl={baseUrl!}
-			/>
+			<ClientTable pageData={data} />
 		</div>
 	);
 }

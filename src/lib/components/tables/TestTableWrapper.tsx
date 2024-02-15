@@ -7,7 +7,7 @@ import { Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 import TemplateTable from "./TemplateTable";
 
-export default function ClientTable({ pageData }: any) {
+export default function TestTable({ baseUrl, pageData, columns }: any) {
 	const router = useRouter();
 
 	const renderCell = React.useCallback((user: any, columnKey: React.Key) => {
@@ -60,13 +60,7 @@ export default function ClientTable({ pageData }: any) {
 		addButtonLabel: "Yeni Danışan Ekle",
 		addButtonOnClick: () => router.push("/clients/new"),
 	};
-
-	const columns = [
-		{ name: "Profil", uid: "fullName" },
-		{ name: "E-Posta", uid: "email" },
-		{ name: "Telefon Numarası", uid: "phoneNumber" },
-		{ name: "Detaylar", uid: "more" },
-	];
+	const tableName = "Danışanlarım";
 
 	return (
 		<div className='p-4'>
