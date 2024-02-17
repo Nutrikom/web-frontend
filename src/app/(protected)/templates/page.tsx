@@ -1,11 +1,21 @@
-import SelectDays from "@/lib/components/SelectDays";
+import { getAllActionWithSearch } from "@/lib/actions/common/getAllActionWithSearch";
+import CreateTemplateForm from "@/lib/components/forms/CreateTemplateForm";
+import TemplatesTable from "@/lib/components/tables/TemplatesTable";
 
-export default function TemplatesPage() {
-	const dayNum = 12;
-
+export default async function TemplatesPage({
+	searchParams,
+}: {
+	searchParams?: { search?: string; page?: string };
+}) {
+	const data = await getAllActionWithSearch(
+		"plans",
+		searchParams?.search,
+		searchParams?.page
+	);
 	return (
-		<div>
-			<SelectDays dayNum={dayNum} />
+		<div className='p-8 space-y-4'>
+			<TemplatesTable pageData={data} />
+			<CreateTemplateForm />
 		</div>
 	);
 }

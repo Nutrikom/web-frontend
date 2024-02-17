@@ -2,14 +2,21 @@
 
 import { cookies } from "next/headers";
 
-export async function getSingleClientAction({ id }: { id: string }) {
+export async function createSingleAction({
+	endpoint,
+	body,
+}: {
+	endpoint: string;
+	body: any;
+}) {
 	const accessToken = cookies().get("access-token")!.value;
 
-	const response = await fetch(`${process.env.BASE_URL}/patients/${id}`, {
-		method: "GET",
+	const response = await fetch(`${process.env.BASE_URL}/${endpoint}`, {
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: accessToken,
+			body: JSON.stringify(body),
 		},
 	});
 

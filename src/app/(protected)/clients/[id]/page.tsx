@@ -1,6 +1,6 @@
 // This function gets called at build time and generates the static props
 
-import { getSingleClientAction } from "@/lib/actions/clientActions/getSingleClientAction";
+import { getSingleActionWithId } from "@/lib/actions/common/getSingleActionWithId";
 
 // export async function generateStaticParams() {
 //     const posts = await fetch('https://.../posts').then((res) => res.json())
@@ -17,7 +17,10 @@ export default async function ClientPage({
 		id: string;
 	};
 }) {
-	const clientDetails = await getSingleClientAction({ id: params.id });
+	const clientDetails = await getSingleActionWithId({
+		endpoint: "patients",
+		id: params.id,
+	});
 
 	return (
 		<div className='flex justify-between px-2'>

@@ -1,6 +1,6 @@
 "use server";
 
-import { getAllClientsAction } from "@/lib/actions/clientActions/getAllClientsAction";
+import { getAllActionWithSearch } from "@/lib/actions/common/getAllActionWithSearch";
 import ClientTable from "@/lib/components/tables/ClientsTable";
 
 export default async function ClientsTableComponent({
@@ -11,42 +11,8 @@ export default async function ClientsTableComponent({
 		page?: string;
 	};
 }) {
-	const mockData: any = {
-		pageable: {
-			pageNumber: 0,
-			pageSize: 1,
-			offset: 0,
-			paged: true,
-			unpaged: true,
-		},
-		totalElements: 1,
-		totalPages: 1,
-		last: true,
-		first: true,
-		content: [
-			{
-				email: "test",
-				name: "test",
-				lastName: "test",
-				phoneNumber: "test",
-				carPlate: "test",
-				tcNo: "test",
-				address: "test",
-				emergencyContactName: "test",
-				emergencyContactPhoneNumber: "test",
-				gender: "test",
-				bloodType: "test",
-				fullName: "test",
-				birthDate: {
-					year: 1999,
-					month: 9,
-					day: 27,
-				},
-			},
-		],
-	};
-
-	const data = await getAllClientsAction(
+	const data = await getAllActionWithSearch(
+		"patients",
 		searchParams?.search,
 		searchParams?.page
 	);

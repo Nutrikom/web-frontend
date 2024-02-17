@@ -75,7 +75,7 @@ export default function NavbarComponent() {
 		{
 			label: "Diyet Listelerim",
 			icon: BookText,
-			href: "/programs",
+			href: "/plans",
 			color: "text-orange-500",
 		},
 		{

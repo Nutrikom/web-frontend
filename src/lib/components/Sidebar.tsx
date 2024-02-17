@@ -36,7 +36,7 @@ const routes = [
 	{
 		label: "Diyet Listelerim",
 		icon: BookText,
-		href: "/programs",
+		href: "/plans",
 		color: "text-orange-500",
 	},
 	{

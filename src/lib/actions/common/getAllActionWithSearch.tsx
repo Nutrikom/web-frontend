@@ -2,23 +2,19 @@
 
 import { cookies } from "next/headers";
 
-export async function getAllClientsAction(
+export async function getAllActionWithSearch(
+	endpoint: string,
 	searchQuery: string | undefined,
-	page: string | undefined,
-	size: number = 10,
-	search: string = "",
-	sort: string = "fullname",
-	order: string = "asc"
+	page: string | undefined
 ) {
 	// Get token from the cookie and decide
 	const accessToken = cookies().get("access-token")!.value;
 
 	const response = await fetch(
-		`${process.env.BASE_URL}/patients${page ? `?page=${page}` : ""}${
+		`${process.env.BASE_URL}/${endpoint}${page ? `?page=${page}` : ""}${
 			searchQuery ? `&searchQuery=${searchQuery}` : ""
 		}`,
 		{
-			cache: "no-cache",
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

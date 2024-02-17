@@ -80,14 +80,12 @@ export default function ClientTable({ pageData }: any) {
 	];
 
 	return (
-		<div className='p-4'>
-			<TemplateTable
-				topContentAreas={topContentAreas}
-				columns={columns}
-				pageData={pageData}
-				renderCell={renderCell}
-			/>
-		</div>
+		<TemplateTable
+			topContentAreas={topContentAreas}
+			columns={columns}
+			pageData={pageData}
+			renderCell={renderCell}
+		/>
 	);
 }
 
