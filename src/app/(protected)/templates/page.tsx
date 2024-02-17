@@ -1,3 +1,12 @@
+import SelectDays from "@/lib/components/SelectDays";
+
 export default function TemplatesPage() {
-	return <div className=''>Templates</div>;
+	const dayNum = 12;
+
+	return (
+		<div>
+			<SelectDays dayNum={dayNum} />
+		</div>
+	);
 }
+

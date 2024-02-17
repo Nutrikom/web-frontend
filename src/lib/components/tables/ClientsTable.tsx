@@ -20,27 +20,38 @@ export default function ClientTable({ pageData }: any) {
 			url = "https://i.pravatar.cc/150?u=a042581f4e29026024d";
 		}
 		switch (columnKey) {
-			case "fullName":
+			case "name":
 				return (
 					<User
 						avatarProps={{
 							radius: "lg",
 							src: url,
 						}}
-						description={user.email}
+						description={user.telNumber}
 						name={cellValue as String}
 					></User>
 				);
-			case "email":
-				return user.email;
-			case "phoneNumber":
-				return cellValue as string;
+			// case "email":
+			// 	return user.email;
+			case "planName":
+				if (user.planId) {
+					return cellValue as string;
+				} else {
+					return "Diyet Planı Atanmamış";
+				}
+			case "personal":
+				return (
+					<div className='text-sm '>
+						<div>Yaş: {user.age}</div>
+						<div>Boy: {user.height}</div>
+					</div>
+				);
 			case "more":
 				return (
 					<Tooltip content='Detaylar'>
 						<span
 							className='text-lg text-default-400 cursor-pointer active:opacity-50'
-							onClick={() => router.push(`/client/${user.id}`)}
+							onClick={() => router.push(`/clients/${user.id}`)}
 						>
 							<Eye />
 						</span>
@@ -58,13 +69,13 @@ export default function ClientTable({ pageData }: any) {
 		searchInputPlaceholder: "Isim Soyisim...",
 		addButton: true,
 		addButtonLabel: "Yeni Danışan Ekle",
-		addButtonOnClick: () => router.push("/clients/new"),
+		addButtonOnClick: () => router.push("/clients/create"),
 	};
 
 	const columns = [
-		{ name: "Profil", uid: "fullName" },
-		{ name: "E-Posta", uid: "email" },
-		{ name: "Telefon Numarası", uid: "phoneNumber" },
+		{ name: "Profil", uid: "name" },
+		{ name: "Diyet Planı", uid: "planName" },
+		{ name: "Kişisel Bilgiler", uid: "personal" },
 		{ name: "Detaylar", uid: "more" },
 	];
 

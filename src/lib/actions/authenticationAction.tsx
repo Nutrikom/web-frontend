@@ -41,20 +41,21 @@ export async function loginUserAction(
 			body: JSON.stringify(validationData.data),
 			cache: "no-cache",
 		});
+
 		const responseData = await response.json();
 
-		if (responseData.accessToken && response.ok) {
+		if (responseData.token && response.ok) {
 			const {
 				exp: expirationDate,
 				sub: _subject,
 			}: {
 				exp: number;
 				sub: string;
-			} = jwtDecode(responseData.accessToken);
+			} = jwtDecode(responseData.token);
 
 			cookies().set({
 				name: "access-token",
-				value: `Bearer ${responseData.accessToken}`,
+				value: `${responseData.token}`,
 				secure: true,
 				expires: expirationDate * 1000,
 				sameSite: "strict",
@@ -67,7 +68,7 @@ export async function loginUserAction(
 	} catch (error: any) {
 		return {
 			message: error.message,
-			errors: error.cause.message,
+			errors: error.cause?.message,
 			status: "Error",
 		};
 	}

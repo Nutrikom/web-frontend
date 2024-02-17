@@ -1,4 +1,4 @@
-import { authRoutes, publicRoutes } from "@/routes";
+import { DEFAULT_LOGIN_REDIRECT_URL, authRoutes, publicRoutes } from "@/routes";
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
@@ -9,20 +9,20 @@ export function middleware(request: NextRequest) {
 
 	const accessToken = request.cookies.get("access-token");
 
-	// if (isAuthRoute) {
-	// 	if (accessToken) {
-	// 		return Response.redirect(
-	// 			new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl)
-	// 		);
-	// 	}
-	// 	return NextResponse.next();
-	// }
-	// if (!accessToken && !isPublicRoute) {
-	// 	return Response.redirect(new URL("/sign-in", nextUrl));
-	// }
-	// if (!accessToken && nextUrl.pathname === "/") {
-	// 	return Response.redirect(new URL("/sign-in", nextUrl));
-	// }
+	if (isAuthRoute) {
+		if (accessToken) {
+			return Response.redirect(
+				new URL(DEFAULT_LOGIN_REDIRECT_URL, nextUrl)
+			);
+		}
+		return NextResponse.next();
+	}
+	if (!accessToken && !isPublicRoute) {
+		return Response.redirect(new URL("/sign-in", nextUrl));
+	}
+	if (!accessToken && nextUrl.pathname === "/") {
+		return Response.redirect(new URL("/sign-in", nextUrl));
+	}
 
 	return NextResponse.next();
 }

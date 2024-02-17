@@ -1,5 +1,6 @@
 "use server";
 
+import { getAllClientsAction } from "@/lib/actions/clientActions/getAllClientsAction";
 import ClientTable from "@/lib/components/tables/ClientsTable";
 
 export default async function ClientsTableComponent({
@@ -10,7 +11,7 @@ export default async function ClientsTableComponent({
 		page?: string;
 	};
 }) {
-	const data: any = {
+	const mockData: any = {
 		pageable: {
 			pageNumber: 0,
 			pageSize: 1,
@@ -45,6 +46,10 @@ export default async function ClientsTableComponent({
 		],
 	};
 
+	const data = await getAllClientsAction(
+		searchParams?.search,
+		searchParams?.page
+	);
 	return (
 		<div className='p-4'>
 			<ClientTable pageData={data} />
