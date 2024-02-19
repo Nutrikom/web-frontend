@@ -51,7 +51,9 @@ export default function ClientTable({ pageData }: any) {
 					<Tooltip content='Detaylar'>
 						<span
 							className='text-lg text-default-400 cursor-pointer active:opacity-50'
-							onClick={() => router.push(`/clients/${user.id}`)}
+							onClick={() =>
+								router.push(`/clients/${user.id}/details`)
+							}
 						>
 							<Eye />
 						</span>

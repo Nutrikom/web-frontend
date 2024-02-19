@@ -1,6 +1,6 @@
 import { Divider } from "@nextui-org/react";
 
-export default function GraphsLayout({
+export default async function GraphsLayout({
 	children,
 	weight,
 	tracker,
