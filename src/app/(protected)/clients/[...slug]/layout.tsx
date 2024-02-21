@@ -19,10 +19,7 @@ export default function ClientIdLayout({
 	};
 }) {
 	const router = useRouter();
-	// const pathname = usePathname();
-	// if (pathname === `/clients/${params.id}`) {
-	// 	redirect(`/clients/${params.id}/details`);
-	// }
+
 	return (
 		<div className='p-4 space-y-4'>
 			<Tabs

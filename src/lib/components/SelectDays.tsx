@@ -7,7 +7,11 @@ import { CheckboxGroup, Switch } from "@nextui-org/react";
 function createElements(n: number) {
 	var elements = [];
 	for (let i = 0; i < n; i++) {
-		elements.push(<CustomCheckbox value={i + 1}>{i + 1}</CustomCheckbox>);
+		elements.push(
+			<CustomCheckbox key={i} value={i + 1}>
+				{i + 1}
+			</CustomCheckbox>
+		);
 	}
 	return elements;
 }
@@ -18,7 +22,7 @@ export default function SelectDays({ dayNum }: { dayNum: number }) {
 	const [allSelected, setAllSelected] = React.useState(false);
 
 	return (
-		<div className='space-y-4 px-4  '>
+		<div className='space-y-4 '>
 			<CheckboxGroup
 				classNames={{
 					wrapper: "flex justify-around",
@@ -38,7 +42,7 @@ export default function SelectDays({ dayNum }: { dayNum: number }) {
 				{createElements(dayNum)}
 			</CheckboxGroup>
 
-			<div className='flex flex-wrap gap-4 border-2 rounded-lg border-solid sm:w-max p-4'>
+			<div className='flex flex-wrap gap-4 border-2 rounded-lg border-solid justify-center self-center p-4'>
 				<Switch
 					isSelected={allSelected}
 					classNames={{

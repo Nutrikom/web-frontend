@@ -1,6 +1,7 @@
 import { getSingleActionWithId } from "@/lib/actions/common/getSingleActionWithId";
 import MealCards from "@/lib/components/MealCards";
 import SelectDays from "@/lib/components/SelectDays";
+import AddMealForm from "@/lib/components/forms/AddMealForm";
 
 export default async function TemplatesDetailsPage({
 	params,
@@ -14,6 +15,8 @@ export default async function TemplatesDetailsPage({
 	return (
 		<div className='h-full p-8 space-y-4'>
 			<SelectDays dayNum={data.days} />
+			<AddMealForm />
+
 			<MealCards dayCount={data.days} />
 		</div>
 	);
