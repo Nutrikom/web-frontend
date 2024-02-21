@@ -12,7 +12,7 @@ export default async function ClientPage({
 	params,
 }: {
 	params: {
-		id: string;
+		slug: string[];
 	};
 }) {
 	return <> </>;

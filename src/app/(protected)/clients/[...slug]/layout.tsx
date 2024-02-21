@@ -1,21 +1,28 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/react";
-import { redirect, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function ClientIdLayout({
 	children,
+	details,
+	graphs,
 	params,
 }: {
 	children: React.ReactNode;
+	details: React.ReactNode;
+	graphs: React.ReactNode;
 	params: {
-		id: string;
+		// id: string;
+		// tabSection: string;
+		slug: string[];
 	};
 }) {
-	const pathname = usePathname();
-	if (pathname === `/clients/${params.id}`) {
-		redirect(`/clients/${params.id}/details`);
-	}
+	const router = useRouter();
+	// const pathname = usePathname();
+	// if (pathname === `/clients/${params.id}`) {
+	// 	redirect(`/clients/${params.id}/details`);
+	// }
 	return (
 		<div className='p-4 space-y-4'>
 			<Tabs
@@ -26,21 +33,16 @@ export default function ClientIdLayout({
 				classNames={{
 					tabList: "flex-wrap md:flex-nowrap",
 				}}
-				selectedKey={pathname}
+				selectedKey={params.slug[1]}
+				onSelectionChange={(e) => {
+					router.push(`/clients/${params.slug[0]}/${e}`);
+				}}
 			>
-				<Tab
-					key={`/clients/${params.id}/details`}
-					title='Detaylar'
-					href={`/clients/${params.id}/details`}
-				>
-					{children}
+				<Tab key={"details"} title='Detaylar'>
+					{details}
 				</Tab>
-				<Tab
-					key={`/clients/${params.id}/graphs`}
-					title='Grafikler'
-					href={`/clients/${params.id}/graphs`}
-				>
-					{children}
+				<Tab key='graphs' title='Grafikler'>
+					{graphs}
 				</Tab>
 				<Tab key='appointments' title='Görüşmeler' isDisabled>
 					{children}

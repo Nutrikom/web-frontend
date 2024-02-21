@@ -5,13 +5,13 @@ export default async function ClientDetailsPage({
 	params,
 }: {
 	params: {
-		id: string;
+		slug: string[];
 	};
 }) {
 	// const clientDetails = await getSingleClientAction({ id: params.id });
 	const clientDetails = await getSingleActionWithId({
 		endpoint: "patients",
-		id: params.id,
+		id: params.slug[0],
 	});
 
 	return <ClientDetailsForm clientDetails={clientDetails} />;
