@@ -16,8 +16,15 @@ function createElements(n: number) {
 	return elements;
 }
 
-export default function SelectDays({ dayNum }: { dayNum: number }) {
-	const [groupSelected, setGroupSelected] = React.useState<any>([]);
+export default function SelectDays({
+	dayNum,
+	groupSelected,
+	setGroupSelected,
+}: {
+	dayNum: number;
+	groupSelected: any;
+	setGroupSelected: any;
+}) {
 	const [multipleSelection, setMultipleSelection] = React.useState(false);
 	const [allSelected, setAllSelected] = React.useState(false);
 
